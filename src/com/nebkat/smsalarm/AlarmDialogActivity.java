@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class AlarmDialogActivity extends Activity {
     // Handler for duration time-out
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
 
     private MediaPlayer mMediaPlayer;
     private Vibrator mVibrator;

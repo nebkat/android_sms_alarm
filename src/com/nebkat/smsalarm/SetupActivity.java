@@ -9,6 +9,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+@SuppressWarnings("deprecation")
 public class SetupActivity extends PreferenceActivity {
     private static final String PREFERENCES_DESCRIPTION_DIALOG_SHOWN = "description_dialog_shown";
     public static final String PREFERENCES_ACTIVATION_SMS = "activation_sms";

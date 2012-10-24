@@ -40,7 +40,7 @@ public class SmsReceiver extends BroadcastReceiver {
         }
     }
 
-    public SmsMessage[] getMessagesFromIntent(Intent intent) {
+    private SmsMessage[] getMessagesFromIntent(Intent intent) {
         Object[] messages = (Object[]) intent.getSerializableExtra(EXTRA_SMS_PDUS);
         byte[][] pduObjs = new byte[messages.length][];
 
