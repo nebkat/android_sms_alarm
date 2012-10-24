@@ -17,7 +17,5 @@
         android:defaultValue="@string/config_default_duration"/>
     <Preference android:key="test"
         android:title="@string/preferences_test_title"
-        android:summary="@string/preferences_test_summary">
-        <intent android:targetPackage="com.nebkat.smsalarm" android:targetClass="com.nebkat.smsalarm.AlarmDialogActivity"/>
-    </Preference>
+        android:summary="@string/preferences_test_summary"/>
 </PreferenceScreen>

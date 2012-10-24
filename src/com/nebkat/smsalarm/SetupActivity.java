@@ -2,8 +2,10 @@ package com.nebkat.smsalarm;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
@@ -29,5 +31,11 @@ public class SetupActivity extends PreferenceActivity {
                         }
                     }).show();
         }
+
+        Preference testPreference = findPreference("test");
+        Intent testIntent = new Intent(this, AlarmDialogActivity.class);
+        testIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        testIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        testPreference.setIntent(testIntent);
     }
 }

@@ -31,7 +31,8 @@ public class SmsReceiver extends BroadcastReceiver {
 
                     if (body.equals(activationSms)) {
                         Intent alarmIntent = new Intent(context, AlarmDialogActivity.class);
-                        alarmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        alarmIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                         context.startActivity(alarmIntent);
                     }
                 }
