@@ -34,6 +34,11 @@ public class AlarmDialogActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean vibrate = preferences.getBoolean(SetupActivity.PREFERENCES_VIBRATE, Boolean.parseBoolean(getResources().getString(R.string.config_default_vibrate)));
@@ -75,17 +80,22 @@ public class AlarmDialogActivity extends Activity {
                 finish();
             }
         }, duration * 1000);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-        mMediaPlayer.stop();
-        mMediaPlayer.release();
-        mMediaPlayer = null;
+        if (mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
 
-        mVibrator.cancel();
+        if (mVibrator != null) {
+            mVibrator.cancel();
+        }
 
         mHandler.removeCallbacksAndMessages(null);
     }
