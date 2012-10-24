@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SMSAlarm</string>
+
+    <string name="description_dialog_title">@string/app_name</string>
+    <string name="description_dialog_message">SMSAlarm is a simple app to help you find your phone when you have lost it on silent (or low volume).\n\nTo use, set the \"Activaton SMS\" setting to something you will easily remember (case-sensitive). However make sure nobody else knows your activation text to avoid unauthorised activation of the alarm (especially during meetings!). The other settings are optional.\n\nTo activate the alarm, send a message to your phone number containing the activation text (case-sensitive) you entered earlier. When the message arrives on your phone, you should hear a lord alarm. If you have enabled the \"Vibrate\" setting the phone should vibrate too. The alarm will stay on for as long as the \"Duration\" setting.</string>
+    <string name="description_dialog_ok">OK</string>
+    <string name="alarm_dialog_stop">Stop alarm!</string>
+
+    <string name="preferences_activation_sms_title">Activation SMS</string>
+    <string name="preferences_activation_sms_summary">Choose what text to send to activate the alarm. It is recommended to use a PIN in your activation to avoid unauthorised activation of the alarm.</string>
+    <string name="preferences_vibrate_title">Vibrate</string>
+    <string name="preferences_vibrate_summary">Whether to vibrate when alarm is activated.</string>
+    <string name="preferences_duration_title">Alarm duration</string>
+    <string name="preferences_duration_summary">How long to sound the alarm for.</string>
+    <string-array name="preferences_duration_entries">
+        <item>5s</item>
+        <item>10s</item>
+        <item>15s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>1m</item>
+        <item>2m</item>
+    </string-array>
+    <string-array name="preferences_duration_values" translatable="false">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+    </string-array>
+    <string name="preferences_test_title">Test</string>
+    <string name="preferences_test_summary">Show the alarm dialog to test your settings.</string>
+</resources>

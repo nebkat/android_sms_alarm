@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:key="activation_sms"
+        android:title="@string/preferences_activation_sms_title"
+        android:summary="@string/preferences_activation_sms_summary"
+        android:maxLength="160"
+        android:defaultValue="@string/config_default_activation_sms"/>
+    <CheckBoxPreference android:key="vibrate"
+        android:title="@string/preferences_vibrate_title"
+        android:summary="@string/preferences_vibrate_summary"
+        android:defaultValue="@string/config_default_vibrate"/>
+    <ListPreference android:key="duration"
+        android:title="@string/preferences_duration_title"
+        android:summary="@string/preferences_duration_summary"
+        android:entries="@array/preferences_duration_entries"
+        android:entryValues="@array/preferences_duration_values"
+        android:defaultValue="@string/config_default_duration"/>
+    <Preference android:key="test"
+        android:title="@string/preferences_test_title"
+        android:summary="@string/preferences_test_summary">
+        <intent android:targetPackage="com.nebkat.smsalarm" android:targetClass="com.nebkat.smsalarm.AlarmDialogActivity"/>
+    </Preference>
+</PreferenceScreen>

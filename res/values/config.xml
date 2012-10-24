@@ -1,0 +1,5 @@
+<resources>
+    <string name="config_default_activation_sms">SMSAlarm activate</string>
+    <string name="config_default_vibrate">true</string>
+    <string name="config_default_duration">15</string>
+</resources>
