@@ -48,16 +48,20 @@ public class AlarmDialogActivity extends Activity {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        // Set max volume
+        // Set ring stream max volume (to allow calling phone after first SMS)
         int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
         am.setStreamVolume(AudioManager.STREAM_RING, maxVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+
+        // Set alarm stream max volume
+        maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_ALARM);
+        am.setStreamVolume(AudioManager.STREAM_ALARM, maxVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         // Get alarm resource
         AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.alarm);
 
         // Play alarm
         mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
         mMediaPlayer.setLooping(true);
         try {
             mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
