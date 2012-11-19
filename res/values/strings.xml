@@ -2,18 +2,33 @@
 <resources>
     <string name="app_name">SMSAlarm</string>
 
-    <string name="description_dialog_title">@string/app_name</string>
-    <string name="description_dialog_message">SMSAlarm is a simple app to help you find your phone when you have lost it on silent (or low volume).\n\nTo use, set the \"Activaton SMS\" setting to something you will easily remember (case-sensitive). However make sure nobody else knows your activation text to avoid unauthorised activation of the alarm (especially during meetings!). The other settings are optional.\n\nTo activate the alarm, send a message to your phone number containing the activation text (case-sensitive) you entered earlier. When the message arrives on your phone, you should hear a lord alarm. If you have enabled the \"Vibrate\" setting the phone should vibrate too. The alarm will stay on for as long as the \"Duration\" setting.</string>
-    <string name="description_dialog_ok">OK</string>
     <string name="alarm_dialog_stop">Stop alarm!</string>
 
-    <string name="preferences_activation_sms_title">Activation SMS</string>
-    <string name="preferences_activation_sms_summary">Choose what text to send to activate the alarm. It is recommended to use a PIN in your activation to avoid unauthorised activation of the alarm.</string>
-    <string name="preferences_vibrate_title">Vibrate</string>
-    <string name="preferences_vibrate_summary">Whether to vibrate when alarm is activated.</string>
-    <string name="preferences_duration_title">Alarm duration</string>
-    <string name="preferences_duration_summary">How long to sound the alarm for.</string>
-    <string-array name="preferences_duration_entries">
+    <string name="device_admin_reason">SMSAlarm requires device admin control for the wipe/lock features.</string>
+
+    <string name="preferences_alarm_category">Alarm</string>
+    <string name="preferences_alarm_enabled_title">Alarm</string>
+    <string name="preferences_alarm_enabled_summary">Play a loud alarm when activation sms is sent.</string>
+    <string name="preferences_alarm_activation_sms_title">Alarm Activation SMS</string>
+    <string name="preferences_alarm_activation_sms_summary">Choose what text to send to activate the alarm. It is recommended to use a PIN in your activation SMS to avoid unauthorised activation of the alarm.</string>
+    <string name="preferences_alarm_vibrate_title">Vibrate</string>
+    <string name="preferences_alarm_vibrate_summary">Whether to vibrate when alarm is activated.</string>
+    <string name="preferences_alarm_duration_title">Alarm duration</string>
+    <string name="preferences_alarm_duration_summary">How long the alarm should last.</string>
+    <string name="preferences_lock_category">Lock</string>
+    <string name="preferences_lock_enabled_title">Lock</string>
+    <string name="preferences_lock_enabled_summary">Lock the device when activation sms is sent.</string>
+    <string name="preferences_lock_activation_sms_title">Lock Activation SMS</string>
+    <string name="preferences_lock_activation_sms_summary">Choose what text to send to lock the device. It is recommended to use a PIN in your activation SMS to avoid unauthorised locking.</string>
+    <string name="preferences_lock_password_title">Default password</string>
+    <string name="preferences_lock_password_summary">Choose what password will be used to lock the device. This is the default password that will be set, custom passwords can be provided when sending SMS by appending the requested password to the SMS. If set to blank, the password/lock method will not be changed but the device will get locked to force re-authentication using the existing password.</string>
+    <string name="preferences_wipe_category">Wipe</string>
+    <string name="preferences_wipe_enabled_title">Wipe</string>
+    <string name="preferences_wipe_enabled_summary">Wipe the device when activation sms is sent.</string>
+    <string name="preferences_wipe_activation_sms_title">Wipe Activation SMS</string>
+    <string name="preferences_wipe_activation_sms_summary">Choose what text to send to wipe the device. It is recommended to use a PIN in your activation SMS to avoid unauthorised wiping.</string>
+
+    <string-array name="preferences_alarm_duration_entries">
         <item>5s</item>
         <item>10s</item>
         <item>15s</item>
@@ -22,7 +37,7 @@
         <item>1m</item>
         <item>2m</item>
     </string-array>
-    <string-array name="preferences_duration_values" translatable="false">
+    <string-array name="preferences_alarm_duration_values" translatable="false">
         <item>5</item>
         <item>10</item>
         <item>15</item>
@@ -31,6 +46,4 @@
         <item>60</item>
         <item>120</item>
     </string-array>
-    <string name="preferences_test_title">Test</string>
-    <string name="preferences_test_summary">Show the alarm dialog to test your settings.</string>
 </resources>

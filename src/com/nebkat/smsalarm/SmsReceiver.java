@@ -1,5 +1,6 @@
 package com.nebkat.smsalarm;
 
+import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,14 +27,47 @@ public class SmsReceiver extends BroadcastReceiver {
                     // TODO: whitelist/blacklist of allowed senders
                     // String address = sms.getOriginatingAddress();
 
-                    String activationSms = preferences.getString(SetupActivity.PREFERENCES_ACTIVATION_SMS,
-                            context.getResources().getString(R.string.config_default_activation_sms));
+                    boolean alarmEnabled = preferences.getBoolean(SetupActivity.PREFERENCES_ALARM_ENABLED,
+                            context.getResources().getBoolean(R.bool.config_default_alarm_enabled));
+                    boolean lockEnabled = preferences.getBoolean(SetupActivity.PREFERENCES_LOCK_ENABLED,
+                            context.getResources().getBoolean(R.bool.config_default_lock_enabled));
+                    boolean wipeEnabled = preferences.getBoolean(SetupActivity.PREFERENCES_WIPE_ENABLED,
+                            context.getResources().getBoolean(R.bool.config_default_wipe_enabled));
 
-                    if (body.equals(activationSms)) {
+                    String activationAlarmSms = preferences.getString(SetupActivity.PREFERENCES_ALARM_ACTIVATION_SMS,
+                            context.getResources().getString(R.string.config_default_alarm_activation_sms));
+                    String activationLockSms = preferences.getString(SetupActivity.PREFERENCES_LOCK_ACTIVATION_SMS,
+                            context.getResources().getString(R.string.config_default_lock_activation_sms));
+                    String activationWipeSms = preferences.getString(SetupActivity.PREFERENCES_WIPE_ACTIVATION_SMS,
+                            context.getResources().getString(R.string.config_default_wipe_activation_sms));
+
+                    if (alarmEnabled && body.startsWith(activationAlarmSms)) {
                         Intent alarmIntent = new Intent(context, AlarmDialogActivity.class);
                         alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         alarmIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                         context.startActivity(alarmIntent);
+                    }
+
+                    if (lockEnabled && body.startsWith(activationLockSms)) {
+                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+                        if (devicePolicyManager.isAdminActive(SetupActivity.DEVICE_ADMIN_COMPONENT)) {
+                            String password = preferences.getString(SetupActivity.PREFERENCES_LOCK_PASSWORD,
+                                    context.getResources().getString(R.string.config_default_lock_password));
+                            if (body.length() > activationLockSms.length() + 1) {
+                                password = body.substring(activationLockSms.length() + 1);
+                            }
+                            if (password.length() > 0) {
+                                devicePolicyManager.resetPassword(password, 0);
+                            }
+                            devicePolicyManager.lockNow();
+                        }
+                    }
+
+                    if (wipeEnabled && body.startsWith(activationWipeSms)) {
+                        DevicePolicyManager devicePolicyManager = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+                        if (devicePolicyManager.isAdminActive(SetupActivity.DEVICE_ADMIN_COMPONENT)) {
+                            devicePolicyManager.wipeData(0);
+                        }
                     }
                 }
             }

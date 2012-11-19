@@ -1,5 +1,14 @@
 <resources>
-    <string name="config_default_activation_sms">SMSAlarm activate</string>
-    <string name="config_default_vibrate">true</string>
-    <string name="config_default_duration">15</string>
+    <bool name="config_default_alarm_enabled">true</bool>
+    <bool name="config_default_lock_enabled">false</bool>
+    <bool name="config_default_wipe_enabled">false</bool>
+
+    <string name="config_default_alarm_activation_sms">SMSAlarm alarm</string>
+    <string name="config_default_lock_activation_sms">SMSAlarm lock</string>
+    <string name="config_default_wipe_activation_sms">SMSWipe wipe</string>
+
+    <string name="config_default_alarm_vibrate">true</string>
+    <string name="config_default_alarm_duration">15</string>
+
+    <string name="config_default_lock_password">SMSAlarm</string>
 </resources>

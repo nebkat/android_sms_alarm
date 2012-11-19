@@ -40,9 +40,15 @@ public class AlarmDialogActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean vibrate = preferences.getBoolean(SetupActivity.PREFERENCES_VIBRATE, Boolean.parseBoolean(getResources().getString(R.string.config_default_vibrate)));
-        int duration = Integer.parseInt(preferences.getString(SetupActivity.PREFERENCES_DURATION, getResources().getString(R.string.config_default_duration)));
+        SharedPreferences preferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        boolean vibrate = preferences.getBoolean(
+                SetupActivity.PREFERENCES_ALARM_VIBRATE,
+                Boolean.parseBoolean(getResources().getString(
+                        R.string.config_default_alarm_vibrate)));
+        int duration = Integer.parseInt(preferences.getString(
+                SetupActivity.PREFERENCES_ALARM_DURATION, getResources()
+                .getString(R.string.config_default_alarm_duration)));
 
         // Get AudioManager
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -50,11 +56,13 @@ public class AlarmDialogActivity extends Activity {
 
         // Set ring stream max volume (to allow calling phone after first SMS)
         int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_RING);
-        am.setStreamVolume(AudioManager.STREAM_RING, maxVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        am.setStreamVolume(AudioManager.STREAM_RING, maxVolume,
+                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         // Set alarm stream max volume
         maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_ALARM);
-        am.setStreamVolume(AudioManager.STREAM_ALARM, maxVolume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+        am.setStreamVolume(AudioManager.STREAM_ALARM, maxVolume,
+                AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
         // Get alarm resource
         AssetFileDescriptor afd = getResources().openRawResourceFd(R.raw.alarm);
@@ -64,7 +72,8 @@ public class AlarmDialogActivity extends Activity {
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
         mMediaPlayer.setLooping(true);
         try {
-            mMediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+            mMediaPlayer.setDataSource(afd.getFileDescriptor(),
+                    afd.getStartOffset(), afd.getLength());
             mMediaPlayer.prepare();
         } catch (IOException e) {
             finish();
